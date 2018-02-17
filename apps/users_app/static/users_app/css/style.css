@@ -1,0 +1,83 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+h1 {
+    margin: 10px 0px 0px 15px;
+}
+h4 {
+    display: inline-block;
+}
+.h_block {
+    display: block
+}
+.little_text {
+    font-size: .7em;
+}
+.indent_p, .indent_l, .indent_t{
+    margin-left: 50px;
+}
+.inline_t {
+    display: inline-block;
+    vertical-align: top;
+}
+    p,label,input {
+    margin: 10px 20px 0px 15px;
+    display: block;
+}
+.navbar1 {
+    color : blue;
+    margin-left: 300px;
+    display: inline-block;
+}
+.navbar2 {
+    color : blue;
+    margin-left: 20px;
+    display: inline-block;
+}
+a { color: blue;
+    margin-left: 120px;
+    display: inline-block;
+}
+.button {
+    color: white;
+    background-color: green;
+    border: 2px solid black;
+    font-size: 1.2em;
+}
+.inline-form{
+    display: inline-block;
+    vertical-align: top;
+}
+.button2{
+    color: white;
+    background-color: green;
+    border: 2px solid black;
+    font-size: 1.2em;
+    margin-left: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+#big_font {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+.li_red {
+    color: red;
+    font-size: 1.2em;
+    margin: 20px 20px 0px 15px;
+}
+.twoperpage {
+    height: 300px;
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+.oneperpage {
+    height: 300px;
+    width: 900px;
+    margin-left: 20px;
+}

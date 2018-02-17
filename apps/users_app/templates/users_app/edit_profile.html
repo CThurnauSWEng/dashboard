@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Message Dashboard</title>
+    <meta name="description" content="A really cool site!">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3>Edit Profile</h3>
+    <form action="/dashboard" method="POST">
+        {% csrf_token %}
+        <input class="button2" type="submit" name="" value="Return To Dashboard">
+    </form>
+    <form action="/process_profile_edit_info" method="POST" >
+        {% csrf_token %}
+        <label>Edit Information</label></br>
+        <label>Email Address:</label>
+        <input type="text" name="email" value="{{ user_to_edit.email }}">
+        <label>First Name:</label>
+        <input type="text" name="first_name" value="{{ user_to_edit.first_name }}">
+        <label>Last Name:</label>
+        <input type="text" name="last_name" value="{{ user_to_edit.last_name }}">
+        <input type="hidden" name="user_level" value="{{ user_to_edit.user_level }}">
+        <input type="hidden" name="user_id" value="{{ user_to_edit.id }}">
+        <input class="button" type="submit" name = "" value="Save">
+    </form>
+    <form action="/process_profile_pwd_change" method="POST">
+        {% csrf_token %}
+        <label>Change Password</label></br>
+        <label>Password:</label>
+        <input type="password" name="password" value="">
+        <label>Password Confirmation:</label>
+        <input type="password" name="pwd_confirm" value="">
+        <input type="hidden" name="user_id" value="{{ user_to_edit.id }}">
+        <input class="button" type="submit" name = "" value="Save">
+    </form>
+    <form action="/process_profile_desc_change" method="POST">
+        {% csrf_token %}
+        <label>Add Description</label></br>
+        <label>Description:</label>
+        <input type="text" name="description" value="{{ user_to_edit.description }}">
+        <input type="hidden" name="user_id" value="{{ user_to_edit.id }}">
+        <input class="button" type="submit" name = "" value="Save">
+    </form>
+
+    {% for error in request.session.errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+</body>
+</html>

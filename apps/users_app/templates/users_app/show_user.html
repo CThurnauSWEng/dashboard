@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+	    <meta charset="UTF-8">
+	    <title>Message Dashboard</title>
+        <meta name="description" content="A really cool site!">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+    </head>
+    <body>
+        <div class="navbar1">
+            <a href="/profile">Profile</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logoff">Logoff</a>
+        </div>
+        <h3 class="h_block">{{ user_to_show.full_name }}</h3></br>
+        <h4 class="h_block">Registered at: {{ user_to_show.created_at }}</h4>
+        <h4 class="h_block">User id: {{ user_to_show.id}}</h4>
+        <h4 class="h_block">Email address: {{ user_to_show.email}}</h4>
+        <h4 class="h_block">Description: {{ user_to_show.description}}</h4></br>
+        <h3 class="h_block">Leave a message for {{ user_to_show.first_name }}</h3>
+        <form action="/process_message" method="POST">
+            {% csrf_token %}
+            <label>Message:</label>
+            <input type="textarea" name="content" value="">
+            <input type="hidden" name="msg_for" value="{{ user_to_show.id }}">
+            <input type="hidden" name="msg_from" value="{{ request.session.user_id }}">
+            <input class="button" type="submit" name = "" value="Post">
+        </form>
+        <p> Current Datetime: {{ current_datetime }}</p>
+        {% load mathfilters %}
+        {% for msg in msgs_to_show reversed %}
+            <a href='/show/{{ msg.from_user.id }}' class="little_text">{{ msg.from_user.first_name }} {{ msg.from_user.last_name }} wrote:</a>
+            <p class="little_text">{{ msg.created_at|timesince }}</p>
+            <p>{{ msg.content }} </p>
+            <p>Comments:</p>
+            {% for comment in msg.comments.all reversed %}
+                <a href='/show/{{ comment.from_user.id }}' class="little_text indent_p inline_t"> {{ comment.from_user.first_name }} wrote:</a>
+                <p class="little_text inline_t"> {{ comment.created_at|timesince }}</p>
+                <p class="indent_p">{{ comment.content }}</p>
+            {% endfor %}
+            <form action="/process_comment" method="POST">
+                {% csrf_token %}
+                <label class="indent_l">Add A Comment:</label>
+                <input type="textarea" class="indent_t" name="content" value="">
+                <input type="hidden" name="comment_for" value="{{ user_to_show.id }}">
+                <input type="hidden" name="to_msg" value="{{ msg.id }}">
+                <input type="hidden" name="from_user" value="{{ request.session.user_id }}">
+                <input class="button" type="submit" name = "" value="Post">
+            </form>
+        {% endfor %}
+    
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Message Dashboard</title>
+    <meta name="description" content="A really cool site!">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3>Signin</h3>
+    <form action="/process_login" method="POST">
+        {% csrf_token %}
+        <label>Email Address:</label>
+        <input type="text" name="email" value="">
+        <label>Password:</label>
+        <input type="password" name="password" value="">
+        <input class="button" type="submit" name = "" value="Signin">
+    </form>
+    <a href="/register">Don't have an account? Register</a>
+
+    {% for error in request.session.errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+</body>
+</html>

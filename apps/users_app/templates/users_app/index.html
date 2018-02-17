@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Message Dashboard</title>
+    <meta name="description" content="A really cool site!">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+    <h3>Welcome to MVC framework User Dashboard Example</h3>
+    <form action="/signin" method="POST">
+        {% csrf_token %}
+        <input class="button" type="submit" name = "" value="Start">
+    </form>
+    <ul>This application demonstrates how to:
+        <li> add, remove, and edit users</li>
+        <li> leave messages for users</li>
+        <li> edit user information</li>
+    </ul>
+
+</body>
+</html>
